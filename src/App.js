@@ -7,9 +7,12 @@ export default class App extends Component {
   
   constructor() {
     super();
+    this.state = {
+        gifs: []
+    }
   } 
 
-  render() { 
+    render() {
     return (
       <div>
         <div className="main-header">
