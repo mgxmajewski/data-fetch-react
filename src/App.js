@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchForm from './Components/SearchForm';
 import GifList from './Components/GifList';
+import axios from "axios";
 
 export default class App extends Component {
   
@@ -10,18 +11,17 @@ export default class App extends Component {
     this.state = {
         gifs: []
     }
-  } 
+  }
+
 
   componentDidMount() {
-      fetch('https://api.giphy.com/v1/gifs/trending?api_key=8kPPAvSPwZGTj0QyLzVO7ovMegXe79v5&limit=25&rating=G')
-          .then(response => response.json())
-          .then(responseData => {
-              this.setState({ gifs: responseData.data })
-          })
-          .catch(err => {
-              console.log('Error fetching gifs', err)
-              }
-          )
+    axios.get('https://api.giphy.com/v1/gifs/trending?api_key=8kPPAvSPwZGTj0QyLzVO7ovMegXe79v5&limit=25&rating=G')
+        .then(response => {
+            this.setState({ gifs: response})
+            })
+       .catch(error => {
+           console.log('Error fetching and parsing data', error)
+    })
   }
 
     render() {
