@@ -15,10 +15,10 @@ export default class App extends Component {
 
 
   componentDidMount() {
-
+    this.performSearch()
   }
 
-  performSearch = (query) => {
+  performSearch = (query = 'cats') => {
       axios.get(`https://api.giphy.com/v1/gifs/search?api_key=8kPPAvSPwZGTj0QyLzVO7ovMegXe79v5&q=${query}&limit=24&offset=0&rating=g&lang=en`)
           .then(response => {
               this.setState({ gifs: response.data.data })
