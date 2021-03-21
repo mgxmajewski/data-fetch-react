@@ -17,7 +17,7 @@ export default class App extends Component {
   componentDidMount() {
     axios.get('https://api.giphy.com/v1/gifs/trending?api_key=8kPPAvSPwZGTj0QyLzVO7ovMegXe79v5&limit=25&rating=G')
         .then(response => {
-            this.setState({ gifs: response})
+            this.setState({ gifs: response.data.data })
             })
        .catch(error => {
            console.log('Error fetching and parsing data', error)
