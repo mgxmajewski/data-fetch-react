@@ -13,14 +13,19 @@ export default class App extends Component {
   } 
 
   componentDidMount() {
-      fetch('http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC')
+      fetch('https://api.giphy.com/v1/gifs/trending?api_key=8kPPAvSPwZGTj0QyLzVO7ovMegXe79v5&limit=25&rating=G')
           .then(response => response.json())
           .then(responseData => {
-              this.setState({ gifs: responseData})
+              this.setState({ gifs: responseData.data })
           })
+          .catch(err => {
+              console.log('Error fetching gifs', err)
+              }
+          )
   }
 
     render() {
+      console.log(this.state.gifs)
     return (
       <div>
         <div className="main-header">
